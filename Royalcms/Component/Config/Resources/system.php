@@ -4,7 +4,7 @@ return array(
      ******************************** 基本配置 ********************************
      */
     //网站时区（只对php 5.1以上版本有效），Etc/GMT-8 实际表示的是 GMT+8 timezone
-    'timezone' 						=> 'Etc/GMT-8', 		
+    'timezone' 						=> env('TIMEZONE', 'Etc/GMT-8'),
     //是否Gzip压缩后输出
     'gzip' 							=> 0,
 
@@ -86,20 +86,22 @@ return array(
      * ******************************分页处理*******************************
      */
     // 分页GET变量
-    'page_var' => 'page',
+    'page_var'          => 'page',
     // 页码数量
-    'page_row' => 10,
+    'page_row'          => 10,
     // 每页显示条数
-    'page_show_row' => 10,
+    'page_show_row'     => 10,
     // 页码风格
-    'page_style' => 2,
+    'page_style'        => 2,
     // 分页文字设置
-    'page_desc' => array(
-            'pre'   => '上一页',
-            'next'  => '下一页',
-            'first' => '首页',
-            'end'   => '尾页',
-            'unit'  => '条',
+    'page_desc'         => array(
+            'prev'      => '上一页',
+            'pre'       => '上一页', /* @deprecated v5.17.0 */
+            'next'      => '下一页',
+            'first'     => '首页',
+            'last'      => '尾页',
+            'end'       => '尾页', /* @deprecated v5.17.0 */
+            'unit'      => '条',
     ),
 
     /*
@@ -113,7 +115,7 @@ return array(
     |
     */
     
-    'locale' => 'zh_CN',
+    'locale' => env('LOCALE', 'zh_CN'), //zh_CN, en_US, zh_TW,
 
     'fallback_locale' => 'zh_CN',
 
@@ -146,19 +148,6 @@ return array(
     'log' => 'daily',
 
     'log_max_files' => 5,
-    
-    /*
-    |--------------------------------------------------------------------------
-    | Service Provider Manifest
-    |--------------------------------------------------------------------------
-    |
-    | The service provider manifest is used by Laravel to lazy load service
-    | providers which are not needed for each request, as well to keep a
-    | list of all of the services. Here, you may set its storage spot.
-    |
-    */
-    // @todo
-//    'manifest' => storage_path().'/meta',
 
 
     /*
