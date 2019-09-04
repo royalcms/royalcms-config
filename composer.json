@@ -1,6 +1,7 @@
 {
     "name": "royalcms/config",
     "description": "The Royalcms Config package.",
+    "type": "library",
     "license": "MIT",
     "homepage": "http://royalcms.cn",
     "support": {
