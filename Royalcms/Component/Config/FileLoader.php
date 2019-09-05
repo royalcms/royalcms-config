@@ -11,6 +11,13 @@ class FileLoader implements LoaderInterface {
 	 */
 	protected $files;
 
+    /**
+     * The base configuration path.
+     *
+     * @var string
+     */
+    protected $basePath;
+
 	/**
 	 * The default configuration path.
 	 *
@@ -47,11 +54,12 @@ class FileLoader implements LoaderInterface {
 	 * @param  string  $sitePath
 	 * @return void
 	 */
-	public function __construct(Filesystem $files, $sitePath, $defaultPath = null)
+	public function __construct(Filesystem $files, $sitePath, $defaultPath = null, $basePath = null)
 	{
 		$this->files = $files;
 		$this->sitePath = $sitePath;
-		
+		$this->basePath = $basePath;
+
 		if ($sitePath == $defaultPath) 
 		{
 		    $this->defaultPath = null;
@@ -87,7 +95,7 @@ class FileLoader implements LoaderInterface {
 		// First we'll get the main configuration file for the groups. Once we have
 		// that we can check for any environment specific files, which will get
 		// merged on top of the main arrays to make the environments cascade.
-		$file = __DIR__."/Resources/{$group}.php";
+		$file = "{$this->basePath}/{$group}.php";
 		
 		if ($this->files->exists($file))
 		{
